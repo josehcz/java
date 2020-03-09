@@ -2,7 +2,7 @@ package br.com.agenda;
 
 import br.com.menu.Teclado;
 
-public class Pessoa {
+public class Pessoa implements Comparable<Pessoa> {
 	private String nome;
 	private String telefone;
 	private String datanasc;
@@ -57,6 +57,7 @@ public class Pessoa {
 		this.cod = cod;
 	}
 	
+	
 	public void imprimir() {
 		System.out.println("Codigo: " + cod);
 		System.out.println("Nome: " + nome);
@@ -78,5 +79,11 @@ public class Pessoa {
 	public void atualizaGen(String genero) {
 		this.genero = teclado.texto();
 	}
+
+	@Override
+	public int compareTo(Pessoa o){	
+		return this.nome.compareTo(o.nome);
+	}
+
 }
 

@@ -1,5 +1,7 @@
 package br.com.app;
 
+import java.util.Collections;
+
 import br.com.agenda.Agenda;
 import br.com.agenda.Pessoa;
 import br.com.menu.*;
@@ -18,17 +20,18 @@ public class App {
 			switch (op) {
 			case 1: //Adicionar tem que arrumar ainda
 				System.out.println("Defina o nome.");
-				n = teclado.texto();
+				teclado = new Teclado();
 				n = teclado.texto();
 				System.out.println("Defina o telefone.");
 				tel = teclado.texto();
 				System.out.println("Defina a data de nascimento.");
-				data = teclado.texto();
+				data = teclado.texto(); 
 				System.out.println("Defina o genero (M/F).");
 				g = teclado.texto();
 				Pessoa p = new Pessoa(n, tel, data, g, cod);
 				agenda.clientes.add(p);
 				cod = cod + 1;
+				Collections.sort(agenda.clientes);
 				break;
 			case 2: // imprimir/listar
 				for (Pessoa x: agenda.clientes) {
