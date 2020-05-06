@@ -1,16 +1,19 @@
 package br.com.agenda;
 
+import java.util.GregorianCalendar;
+
 import br.com.menu.Teclado;
 
 public class Pessoa implements Comparable<Pessoa> {
 	private String nome;
 	private String telefone;
-	private String datanasc;
-	private String genero;
+	private int datanasc;
+	private char genero;
 	private int cod;
+	private int idade;
 	Teclado teclado = new Teclado();
 
-	public Pessoa(String nome, String telefone, String datanasc, String genero, int cod) {
+	public Pessoa(String nome, String telefone, int datanasc, char genero, int cod) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.datanasc = datanasc;
@@ -34,19 +37,19 @@ public class Pessoa implements Comparable<Pessoa> {
 		this.telefone = telefone;
 	}
 
-	public String getDatanasc() {
+	public int getDatanasc() {
 		return datanasc;
 	}
 
-	public void setDatanasc(String datanasc) {
+	public void setDatanasc(int datanasc) {
 		this.datanasc = datanasc;
 	}
 
-	public String getGenero() {
+	public char getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(char genero) {
 		this.genero = genero;
 	}
 	public int getCod() {
@@ -57,6 +60,13 @@ public class Pessoa implements Comparable<Pessoa> {
 		this.cod = cod;
 	}
 	
+	public int getIdade() {
+		return idade;
+	}
+	
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
 	
 	public void imprimir() {
 		System.out.println("Codigo: " + cod);
@@ -73,13 +83,37 @@ public class Pessoa implements Comparable<Pessoa> {
 	public void atualizaFone(String telefone) {
 		this.telefone = teclado.texto();
 	}
-	public void atualizaNasc(String datanasc) {
-		this.datanasc = teclado.texto();
+	public void atualizaNasc(int datanasc) {
+		this.datanasc = teclado.opcao();
 	}
-	public void atualizaGen(String genero) {
-		this.genero = teclado.texto();
+	public void atualizaGen(char genero) {
+		this.genero = teclado.cha();
 	}
+	
+	public void calcIdade(int datanasc) {
+    	int dia = datanasc/1000000;
+    	int ano = datanasc % 10000;
+    	int mes = datanasc/10000;
+    	mes = mes % 100;
+    	
+    	GregorianCalendar calendar = new GregorianCalendar();
+    	int diah = calendar.get(GregorianCalendar.DAY_OF_MONTH); //dia hoje
+    	int mesh = calendar.get(GregorianCalendar.MONTH) + 1; //mes hoje
+    	int anoh = calendar.get(GregorianCalendar.YEAR); //ano hoje
 
+    	int idade = anoh - ano - 1;
+    	if (mes == mesh) {
+    		if (dia <= diah) {
+    			idade += 1;
+    		}
+    	}
+    	if (mes < mesh) {
+    		idade += 1;
+    	}
+    	
+    	setIdade(idade);
+	}
+	
 	@Override
 	public int compareTo(Pessoa o){	
 		return this.nome.compareTo(o.nome);

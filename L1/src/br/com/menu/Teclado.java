@@ -18,6 +18,10 @@ public class Teclado {
 		String t = teclado.nextLine();
 		return t;
 	}
+	public char cha() {
+		char c = teclado.next().charAt(0);
+		return c;
+	}
 
 	@Override
 	protected void finalize() throws Throwable {

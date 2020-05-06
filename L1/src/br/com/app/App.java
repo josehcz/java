@@ -8,40 +8,37 @@ import br.com.menu.*;
 
 public class App {
 	public static void main(String[] args) {
-		String n,tel,data,g;
-		int cod = 0, codt, info;
+		String n,tel;
+		char g;
+		int cod = 0, codt, info, data;
 		Menu menu = new Menu();
 		Agenda agenda = new Agenda();	
 		int op = 1000;
 		while (op != 0) {
-			menu.imprimir();
+			menu.m1();
 			Teclado teclado = new Teclado();
 			op = teclado.opcao();
 			switch (op) {
-			case 1: //Adicionar tem que arrumar ainda
+			case 1: //Adicionar
 				System.out.println("Defina o nome.");
 				teclado = new Teclado();
 				n = teclado.texto();
 				System.out.println("Defina o telefone.");
 				tel = teclado.texto();
-				System.out.println("Defina a data de nascimento.");
-				data = teclado.texto(); 
+				System.out.println("Defina a data de nascimento(coloque os numeros sem / Ex:02052000).");
+				data = teclado.opcao(); 
 				System.out.println("Defina o genero (M/F).");
-				g = teclado.texto();
+				g = teclado.cha();
 				Pessoa p = new Pessoa(n, tel, data, g, cod);
+				p.calcIdade(data);
 				agenda.clientes.add(p);
 				cod = cod + 1;
 				Collections.sort(agenda.clientes);
 				break;
-			case 2: // imprimir/listar
-				for (Pessoa x: agenda.clientes) {
-					x.imprimir();
-				}
-				break;
-			case 3: // Alterar
+			case 2: // Alterar cadastro
 				System.out.println("Qual o codigo da pessoa que deseja alterar?");
 				codt = teclado.opcao();
-				System.out.println("Qual informação deseja alterar (1 = nome/2 = tel/3 = datanasc/4 = genero/ 0 = sair)");
+				menu.alt();
 				info = teclado.opcao();
 				switch (info) {
 				case 1:
@@ -52,7 +49,7 @@ public class App {
 							x.atualizaNome(n);
 						}
 					}
-					break;
+					continue;
 				case 2:
 					for (Pessoa x: agenda.clientes) {
 						if (x.getCod() == codt) {
@@ -61,31 +58,107 @@ public class App {
 							x.atualizaFone(tel);
 						}
 					}
-					break;
+					continue;
 				case 3:
 					for (Pessoa x: agenda.clientes) {
 						if (x.getCod() == codt) {
 							System.out.println("Nova data nasc");
-							data = teclado.texto();
+							data = teclado.opcao();
 							x.atualizaNasc(data);
 						}
 					}
-					break;
+					continue;
 				case 4:
 					for (Pessoa x: agenda.clientes) {
 						if (x.getCod() == codt) {
 							System.out.println("Novo genero");
-							g = teclado.texto();
+							g = teclado.cha();
 							x.atualizaGen(g);
 						}
 					}
-					break;
+					continue;
 				case 0:
+					continue;
+				default:
+					break;
+				}
+				
+			case 3: // remover cadastro
+				System.out.println("Qual o codigo da pessoa que deseja remover?");
+				codt = teclado.opcao();
+				for (Pessoa x: agenda.clientes) {
+					if (x.getCod() == codt) {
+						agenda.clientes.remove(x);
+					}
+				}
+				break;
+			
+			case 4: // listar
+				for (Pessoa x: agenda.clientes) {
+					x.imprimir();
+				}
+				break;
+			case 5: // listar apenas masculinos
+				for (Pessoa x: agenda.clientes) {
+					if(x.getGenero() == 'M')
+					x.imprimir();
+				}
+				break;
+			case 6: // listar apenas masculinos
+				for (Pessoa x: agenda.clientes) {
+					if(x.getGenero() == 'F')
+					x.imprimir();
+				}
+				break;
+			case 7: // relatorio
+				int M = 0,Med = 0; //contador , media
+				int MM = 0,MedM = 0; //contador, media M
+				int MF = 0, MedF = 0; //contador, media F
+				menu.relatorio();
+				codt = teclado.opcao();
+				switch (codt) {
+				case 1: //media geral
+					for (Pessoa x: agenda.clientes) {
+						Med += x.getIdade();
+						M += 1;
+					}
+					Med = Med / M;
+					System.out.println("Idade media dos pacientes: " + Med);
+					break;
+				
+				case 2: //media masculina
+					for (Pessoa x: agenda.clientes) {
+						if(x.getGenero() == 'M') {
+							MedM += x.getIdade();
+							MM += 1;		
+						}
+					}
+					MedM = MedM / MM;
+					System.out.println("Idade media dos pacientes masculinos: " + MedM);
+					break;
+				
+				case 3: //media feminina
+					for (Pessoa x: agenda.clientes) {
+						if(x.getGenero() == 'F') {
+							MedF += x.getIdade();
+							MF += 1;
+						}
+					}
+					MedF = MedF / MF;
+					System.out.println("Idade media dos pacientes femininos: " + MedF);
+					break;
+				
+				case 4: //serviços mais procurados
+				
+				case 5: //serviços mais procurados por homens
+				
+				case 6: //serviços mais procurados por mulheres
+				
+				case 0:// sair
 					continue;
 				default:
 					continue;
 				}
-			case 4: // remover
 			case 0: //Sair
 				continue;
 			}
