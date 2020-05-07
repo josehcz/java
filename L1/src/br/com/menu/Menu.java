@@ -1,14 +1,15 @@
 package br.com.menu;
 
 public class Menu {
-	public void m1() {
+	public void m() {
 		System.out.println("1 - Inserir cliente.");
 		System.out.println("2 - Alterar cadastro.");
 		System.out.println("3 - Remover cadastro");
-		System.out.println("4 - Listar cadastro");
-		System.out.println("5 - Listar cadastro apenas Masculinos");
-		System.out.println("6 - Listar cadastro apenas Feminino");
-		System.out.println("7 - Relatorio");
+		System.out.println("4 - Comprar.");
+		System.out.println("5 - Listar cadastro");
+		System.out.println("6 - Listar cadastro apenas Masculinos");
+		System.out.println("7 - Listar cadastro apenas Feminino");
+		System.out.println("8 - Relatorio");
 		System.out.println("0 - Sair");
 		
 	}

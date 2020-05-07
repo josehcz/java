@@ -15,7 +15,7 @@ public class App {
 		Agenda agenda = new Agenda();	
 		int op = 1000;
 		while (op != 0) {
-			menu.m1();
+			menu.m();
 			Teclado teclado = new Teclado();
 			op = teclado.opcao();
 			switch (op) {
@@ -65,6 +65,7 @@ public class App {
 							System.out.println("Nova data nasc");
 							data = teclado.opcao();
 							x.atualizaNasc(data);
+							x.calcIdade(data);
 						}
 					}
 					continue;
@@ -82,7 +83,6 @@ public class App {
 				default:
 					break;
 				}
-				
 			case 3: // remover cadastro
 				System.out.println("Qual o codigo da pessoa que deseja remover?");
 				codt = teclado.opcao();
@@ -92,25 +92,29 @@ public class App {
 					}
 				}
 				break;
-			
-			case 4: // listar
-				for (Pessoa x: agenda.clientes) {
-					x.imprimir();
-				}
+				
+			case 4: //comprar
+				agenda.comprarP();
 				break;
-			case 5: // listar apenas masculinos
+				
+			case 5: // listar
 				for (Pessoa x: agenda.clientes) {
-					if(x.getGenero() == 'M')
 					x.imprimir();
 				}
 				break;
 			case 6: // listar apenas masculinos
 				for (Pessoa x: agenda.clientes) {
+					if(x.getGenero() == 'M')
+					x.imprimir();
+				}
+				break;
+			case 7: // listar apenas masculinos
+				for (Pessoa x: agenda.clientes) {
 					if(x.getGenero() == 'F')
 					x.imprimir();
 				}
 				break;
-			case 7: // relatorio
+			case 8: // relatorio
 				int M = 0,Med = 0; //contador , media
 				int MM = 0,MedM = 0; //contador, media M
 				int MF = 0, MedF = 0; //contador, media F
@@ -148,11 +152,17 @@ public class App {
 					System.out.println("Idade media dos pacientes femininos: " + MedF);
 					break;
 				
-				case 4: //serviços mais procurados
+				case 4: //serviços mais consumido
+					agenda.prodMaisCons();
+					break;
 				
-				case 5: //serviços mais procurados por homens
+				case 5: //serviços mais consumido por homens
+					agenda.prodMaisConM();
+					break;
 				
-				case 6: //serviços mais procurados por mulheres
+				case 6: //serviços mais consumido por mulheres
+					agenda.prodMaisConF();
+					break;
 				
 				case 0:// sair
 					continue;
@@ -161,10 +171,7 @@ public class App {
 				}
 			case 0: //Sair
 				continue;
-			}
-			
-		}
-		
+			}	
+		}	
 	}
-
 }

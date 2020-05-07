@@ -12,6 +12,19 @@ public class Pessoa implements Comparable<Pessoa> {
 	private int cod;
 	private int idade;
 	Teclado teclado = new Teclado();
+	
+	private int[] Produtos = new int[13];
+
+	public Pessoa(String nome, String telefone, int datanasc, char genero, int cod, int idade, Teclado teclado) {
+		super();
+		this.nome = nome;
+		this.telefone = telefone;
+		this.datanasc = datanasc;
+		this.genero = genero;
+		this.cod = cod;
+		this.idade = idade;
+		this.teclado = teclado;
+	}
 
 	public Pessoa(String nome, String telefone, int datanasc, char genero, int cod) {
 		this.nome = nome;
@@ -68,6 +81,16 @@ public class Pessoa implements Comparable<Pessoa> {
 		this.idade = idade;
 	}
 	
+	public int getProdutos(int i) {
+		return Produtos[i];
+	}
+	
+	public void setProdutos(int i, int qtd) {
+		this.Produtos[i] = qtd;
+	}
+	
+
+	//imprimir
 	public void imprimir() {
 		System.out.println("Codigo: " + cod);
 		System.out.println("Nome: " + nome);
@@ -76,7 +99,7 @@ public class Pessoa implements Comparable<Pessoa> {
 		System.out.println("Genero: " + genero);
 		System.out.println("\n");
 	}	
-		
+	//atualizar cadastro	
 	public void atualizaNome(String nome) {
 		this.nome = teclado.texto();
 	}
@@ -90,6 +113,8 @@ public class Pessoa implements Comparable<Pessoa> {
 		this.genero = teclado.cha();
 	}
 	
+	
+	// calcular idade
 	public void calcIdade(int datanasc) {
     	int dia = datanasc/1000000;
     	int ano = datanasc % 10000;
@@ -120,4 +145,3 @@ public class Pessoa implements Comparable<Pessoa> {
 	}
 
 }
-
