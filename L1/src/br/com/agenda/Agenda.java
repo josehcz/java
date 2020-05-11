@@ -10,15 +10,15 @@ public class Agenda {
 	
 	//lista dos produtos
 	private String[] produtos = {"Manicure","Pedicure","Design de sobrancelhas",
-			"Corte de cabelo","Pintura de cabelo","Remoção de rugas","Remoção de manchas",
-			"Botox","Tratamento para emagrecimento","Redução de medidas","Modelagem e corte de barba",
+			"Corte de cabelo","Pintura de cabelo","RemoÃ§Ã£o de rugas","RemoÃ§Ã£o de manchas",
+			"Botox","Tratamento para emagrecimento","ReduÃ§Ã£o de medidas","Modelagem e corte de barba",
 			"Tratamento para queda de cabelo","Produtos especializados"};
 
 	public void comprarP() { //comprar produto
 			int i;
 			System.out.println("Selecione o codigo do cliente que deseja adicionar o item na lista:");
 			int pe = teclado.opcao();
-			System.out.println("PRODUTOS: ");
+			System.out.println("Produtos: ");
 			for(i = 0; i < this.produtos.length; ++i) {
 				System.out.println(i  + " " +  produtos[i]);
 			}
@@ -73,7 +73,7 @@ public class Agenda {
 		}	
 		System.out.println("Produtos mais consumido por homens:" + this.produtos[MaiorMF]);
 		}
-	public void prodMaisConF() { // produtos mais consimidos por mulheres
+	public void prodMaisConF() { // produtos mais consumidos por mulheres
 		int[] prodF = new int[13];
 		int maiorF = 0; //maior feminino
 		int MaiorFF = 0; //maior feminino final
