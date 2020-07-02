@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Cliente extends Pessoa{
 	
 	
-	private ArrayList<Animal> pets  = new ArrayList<Animal>();
+	private ArrayList<Animal> pets  = new ArrayList<Animal>(5);
 	int codP = 0;
 	
 	public Cliente(String nome, String cpf, String endereco, String tel, char genero, int cod) {
@@ -26,7 +26,7 @@ public class Cliente extends Pessoa{
 		System.out.println("Codigo: " + cod);
 		System.out.println("Nome: " + nome);
 		System.out.println("CPF: " + cpf);
-		System.out.println("endereço: " + endereco);
+		System.out.println("endereÃ§o: " + endereco);
 		System.out.println("Telefone: " + tel);
 		System.out.println("Genero: " + genero);
 		System.out.println("+++++++++++++++++ PETS +++++++++++++++++");
